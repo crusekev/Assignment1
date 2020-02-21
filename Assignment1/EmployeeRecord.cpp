@@ -10,6 +10,7 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 #include "EmployeeRecord.h"
+#include "CustomerList.h"
 #include <iostream>
 #include <string>
 
@@ -21,6 +22,7 @@ EmployeeRecord::EmployeeRecord() {
     strcpy(m_sFirstName, "");
     m_iDeptID = 0;
     m_dSalary = 0;
+    m_pCustomerList = new CustomerList();
 }
 // parameterized constructor
 EmployeeRecord::EmployeeRecord(int ID, char *fName, char *lName, int dept, double sal) {
@@ -30,10 +32,12 @@ EmployeeRecord::EmployeeRecord(int ID, char *fName, char *lName, int dept, doubl
     strcpy(m_sLastName, lName);
     m_iDeptID = dept;
     m_dSalary = sal;
+    m_pCustomerList = new CustomerList();
 }
 // destructor
 EmployeeRecord::~EmployeeRecord() {
     std::cout << "Function reached 3\n";
+    delete m_pCustomerList;
 }
 
 // getter function for the employee's id
@@ -65,10 +69,10 @@ void EmployeeRecord::setName(char *fName, char *lName) {
 }
 
 // reference function, getter for dept id
-void EmployeeRecord::getDept(int &d) {
+int EmployeeRecord::getDept() {
     std::cout << "Function reached 8\n";
-    // copying the member variable m_iDeptID into the int variable referenced by the function argument
-    d = m_iDeptID;
+    // returns department id
+    return m_iDeptID;
 }
 
 // setter for dept id
@@ -79,11 +83,10 @@ void EmployeeRecord::setDept(int d) {
 }
 
 // pointer function, getter for employee's salary
-void EmployeeRecord::getSalary(double *sal) {
+double EmployeeRecord::getSalary() {
     std::cout << "Function reached 10\n";
-    // copying the member variable m_dSalary into the int variable pointed to by the functionargument
-    sal = &m_dSalary;
-    *sal = m_dSalary;
+    // returns salary
+    return m_dSalary;
 }
 
 // setter for employee's salary
@@ -101,4 +104,8 @@ void EmployeeRecord::printRecord() {
     std::cout << "First name: " << m_sFirstName << std::endl;
     std::cout << "Department ID: " << m_iDeptID << std::endl;
     std::cout << "Salary: " << m_dSalary << std::endl;
+}
+
+CustomerList *EmployeeRecord::getCustomerList() {
+    return m_pCustomerList;
 }

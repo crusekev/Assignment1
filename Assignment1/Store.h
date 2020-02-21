@@ -1,12 +1,12 @@
 //
-//  Store.hpp
+//  Store.h
 //  Assignment1
 //
 //  Created by Kevin Cruse on 2/19/20.
 //  Copyright © 2020 Kevin Cruse. All rights reserved.
 //
 
-#pragma once;
+#pragma once
 
 #include <string.h>
 #include <iostream>
@@ -25,7 +25,6 @@ class Store
 
     public:
         Store *m_pNext;
-
         Store(); // Default constructor
         Store(int ID, char *name, char *addr, char *city, char *st, char *zip); // Constructor
         ~Store(); // Destructor
